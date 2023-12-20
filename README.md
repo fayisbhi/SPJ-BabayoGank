@@ -2,10 +2,10 @@
 
 # SPJ-BabayoGank
 Anggota:
-1. Rizqy M Raihan (22.83.)
-2. Ahmad Sri Bintang (22.83.)
+1. Rizqy M Raihan (22.83.0797)
+2. Ahmad Sri Bintang (22.83.0796)
 3. Fayi' Subhi T (22.83.0808)
-4. Egar Athwal M (22.83.)
+4. Egar Athwal M (22.83.0781)
 
 # Latar Belakang
 Kemajuan teknologi telah meningkatkan risiko keamanan online, termasuk serangan peretas (hackers), malware, dan serangan siber lainnya.
