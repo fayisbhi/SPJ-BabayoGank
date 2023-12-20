@@ -1,5 +1,11 @@
+# Final Project Sistem Pertahanan Jaringan
+
 # SPJ-BabayoGank
-Final Project Sistem Pertahanan Jaringan
+Anggota:
+1. Ri
+2. Bi
+3. Fa
+4. Eg
 
 # Latar Belakang
 Kemajuan teknologi telah meningkatkan risiko keamanan online, termasuk serangan peretas (hackers), malware, dan serangan siber lainnya.
@@ -11,7 +17,64 @@ Web server merupakan target yang umum bagi para peretas karena berisi data berha
 
 # Service Yang Diinstall
 1. SSH
-2. Owncloud
-3. Cockpit
-4. Cloudflared
+````
+sudo apt install sshd
+````
+2. Cockpit
+````
+sudo apt install cockpit
+````
+# Konfigurasi OwnCloud
+1. Create the occ helper script.
+```
+#!/bin/bash
+ -u www-data php /var/www/owncloud/occ "$@"
+````
+````
+sudo chmod +x occ
+```
+2. Install the required packages
+````
+sudo apt install apache2 php7.4 libapache2-mod-php7.4 php-mbstring php-xml php-mysql
+````
+3. Create a database for ownCloud.
+````
+sudo mysql -u root
+CREATE DATABASE owncloud;
+CREATE USER owncloud@localhost IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON owncloud.* TO owncloud@localhost;
+FLUSH PRIVILEGES;
+exit
+````
+4. Download the ownCloud package.
+````
+wget https://download.owncloud.org/server/stable/owncloud-latest.tar.gz
+````
+5. Extract the package and copy it to the web root directory.
+````
+tar -zxvf owncloud-latest.tar.gz
+sudo mv owncloud /var/www/owncloud
+````
+6. Set the ownership of the ownCloud directory to the web server user.
+````
+sudo chown -R www-data:www-data /var/www/owncloud
+````
+7. setting apache2 untuk berjalan port 80
+````
+sudo nano /etc/apache2/sites-available/owncloud.conf
+<VirtualHost *:80>
+  ServerName your_domain_name
+  DocumentRoot /var/www/owncloud
+  <Directory /var/www/owncloud>
+    Options FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+</VirtualHost>
+
+sudo a2ensite owncloud.conf
+sudo systemctl restart apache2
+````
+
 
