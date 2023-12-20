@@ -95,5 +95,9 @@ ufw allow 'apache2'
 ufw allow 'ssh'
 ufw allow 9090
 ````
-
+# Block Acces Root for SSH
+1. Open file /etc/ssh/sshd_config
+````
+permitlogin no
+````
 
